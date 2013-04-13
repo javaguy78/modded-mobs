@@ -1,0 +1,27 @@
+faster-zombies:
+  enabled: true        # If true: Custom, faster zombies are enabled.
+
+zombies:
+  custom-drops:
+    enabled: true      # If true, custom zombies drops are configurable. standard zombie drops are disabled
+    minimum: 0         # Minimum number of items a zombie can drop
+    maximum: 1         # Maximum number of items a zombie can drop
+    common-items:      # List of common items in TMC Item Format
+      - 367|1
+      - 298|1|-1|34
+      - 336|1
+    rare-chance: 5     # percent chance that item dropped will come from the rare list
+    rare-items:        # List of rare items in TMC Item Format
+      - 367|1|-1|74
+      - 306|1|-1|54
+  player-zombies:
+    enabled: true      # If true: When a player dies, a zombie will be spawned where they died.
+    inventory: true    # If true: Player zombie will carry the inventory of the player who died
+
+giants:
+  enabled: true          # If true: Custom Giants are enabled
+  zombies-on-hit:
+    enabled: true        # Spawn a horde of smaller zombies each time the giant is hit
+    minimum: 2           # Minimum number of zombies to spawn on hit
+    maximum: 4           # Maximum number of zombies to spawn on hit
+  explode-on-jump: true  # Cause an explosion when the giant jumps
