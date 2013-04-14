@@ -4,7 +4,6 @@ import com.themaskedcrusader.bukkit.config.Settings;
 import com.themaskedcrusader.moddedmobs.commands.Commands;
 import com.themaskedcrusader.moddedmobs.giants.Giants;
 import com.themaskedcrusader.moddedmobs.zombies.Zombies;
-import net.minecraft.server.v1_5_R2.MobSpawnerAbstract;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.java.JavaPlugin;

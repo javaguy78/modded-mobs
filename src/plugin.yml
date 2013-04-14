@@ -5,5 +5,5 @@ version: Alpha 0.1a
 commands:
     mobadmin:
         description: Access to all modded mobs admin commands
-        usage: /mobadmin spawn
+        usage: /mobadmin [spawn|butcher|help]
         permissions: modded-mobs.admin

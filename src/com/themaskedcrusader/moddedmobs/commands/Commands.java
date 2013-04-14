@@ -1,6 +1,5 @@
 package com.themaskedcrusader.moddedmobs.commands;
 
-import com.themaskedcrusader.bukkit.config.Settings;
 import com.themaskedcrusader.bukkit.util.StringUtils;
 import com.themaskedcrusader.moddedmobs.Plugin;
 import org.bukkit.ChatColor;
@@ -29,6 +28,7 @@ public class Commands {
         try {
             if (args[0].equalsIgnoreCase("spawn"))         { spawnEntity(sender, args);   return; }
             if (args[0].equalsIgnoreCase("butcher"))       { butcherMobs(sender, args);   return; }
+            if (args[0].equalsIgnoreCase("help"))          { commandHelp(sender);         return; }
 
         } catch (Exception ignored) {
             plugin.getLogger().info(ignored.getMessage());
@@ -97,5 +97,21 @@ public class Commands {
         } else {
             sender.sendMessage(ChatColor.RED + "This command must be executed in game");
         }
+    }
+
+    private void commandHelp(CommandSender sender) {
+        ChatColor G = ChatColor.GREEN;
+        ChatColor R = ChatColor.RED;
+        ChatColor B = ChatColor.AQUA;
+
+        sender.sendMessage(G + "Available Commands:");
+        sender.sendMessage(G + "Spawn: Spawns a mob");
+        sender.sendMessage(R + "Syntax: " + B + "/mobadmin spawn <mob name> [ x y z [world name]]");
+        sender.sendMessage(R + "Example: " + B + "/mobadmin spawn giant 0 64 0 world");
+        sender.sendMessage(G + "Butcher: Kills all mobs or all of a type");
+        sender.sendMessage(R + "Syntax: " + B + "/mobadmin butcher <mob type>");
+        sender.sendMessage(R + "Kill All Zombies: " + B + "/mobadmin butcher zombie");
+        sender.sendMessage(R + "Kill All Mobs: " + B + "/mobadmin butcher");
+
     }
 }

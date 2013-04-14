@@ -1,13 +1,12 @@
 package com.themaskedcrusader.moddedmobs.mobs;
 
-import com.themaskedcrusader.bukkit.config.Settings;
-import com.themaskedcrusader.moddedmobs.zombies.Zombies;
 import net.minecraft.server.v1_5_R2.*;
 import org.bukkit.craftbukkit.v1_5_R2.util.UnsafeList;
 
 import java.lang.reflect.Field;
 
 public class FasterZombie extends EntityZombie {
+    float runSpeed = 0.4F;
 
     public FasterZombie(World world) {
         super(world);
@@ -22,8 +21,8 @@ public class FasterZombie extends EntityZombie {
 
         this.goalSelector.a(0, new PathfinderGoalFloat(this));
         this.goalSelector.a(1, new PathfinderGoalBreakDoor(this));
-        this.goalSelector.a(2, new PathfinderGoalMeleeAttack(this, EntityHuman.class, 0.43F, false));
-        this.goalSelector.a(3, new PathfinderGoalMeleeAttack(this, EntityVillager.class, 0.43F, true));
+        this.goalSelector.a(2, new PathfinderGoalMeleeAttack(this, EntityHuman.class, runSpeed, false));
+        this.goalSelector.a(3, new PathfinderGoalMeleeAttack(this, EntityVillager.class, runSpeed, true));
         this.goalSelector.a(4, new PathfinderGoalMoveTowardsRestriction(this, 0.23F));
         this.goalSelector.a(5, new PathfinderGoalMoveThroughVillage(this, 0.23F, false));
         this.goalSelector.a(6, new PathfinderGoalRandomStroll(this, 0.23F));

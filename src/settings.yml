@@ -24,4 +24,23 @@ giants:
     enabled: true        # Spawn a horde of smaller zombies each time the giant is hit
     minimum: 2           # Minimum number of zombies to spawn on hit
     maximum: 4           # Maximum number of zombies to spawn on hit
-  explode-on-jump: true  # Cause an explosion when the giant jumps
+  explode-on-jump: true  # Cause an explosion when the giant jumps (Not Implemented Yet)
+
+########################################################################################################################
+# IMPORTANT!!!  -- THE TMCz ITEM FORMAT --
+#
+#      <ItemId>|<Quantity>|<Data Value>|<Damage Value>
+#
+#  Item ID  = The Internal ID of the item. REQUIRED (Consult Minecraft wiki for Item IDs)
+#  Quantity = The Quantity of the Item. REQUIRED (Always required, but ignored where noted below)
+#  Data     = The Data Value associated with the item. Optional/Required (Consult the Wiki for Appropriate Data values)
+#             NOTE: For potions, this value MUST be -1.
+#  Damage   = The Damage Value of tha item. Optional. If damage value is specified, then data value MUST also be
+#             specified. If you need the damage value, but not the data value, set the data value to  -1.
+#             Consult the wiki for appropriate damage values for items, Specifically potions.
+#             Potions damage values table: http://www.minecraftwiki.net/wiki/Potions#Data_value_table
+#
+# EXAMPLE:   373|10|-1|16421  = 10 Splash potions of Instant Healing II
+# EXAMPLE:   351|1|10         = 1 piece of lime dye
+# EXAMPLE:   276|2            = 2 diamond swords
+########################################################################################################################
