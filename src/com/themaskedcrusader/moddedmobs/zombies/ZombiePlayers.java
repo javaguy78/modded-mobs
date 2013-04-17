@@ -8,6 +8,7 @@ import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.craftbukkit.v1_5_R2.CraftWorld;
 import org.bukkit.entity.Entity;
+import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -36,13 +37,18 @@ public class ZombiePlayers extends Zombies implements Listener {
         Player player = event.getEntity();
         Location location = player.getLocation();
         World world = location.getWorld();
+        Entity zombie;
 
-        net.minecraft.server.v1_5_R2.World mcWorld = ((CraftWorld) world).getHandle();
-        FasterZombie playerZombie = new FasterZombie(mcWorld);
-        playerZombie.setPosition(location.getX(), location.getY(), location.getZ());
-        mcWorld.addEntity(playerZombie, CreatureSpawnEvent.SpawnReason.CUSTOM);
+        if (Settings.getConfig().getBoolean(FASTER_ZOMBIES + ENABLED)) {
+            net.minecraft.server.v1_5_R2.World mcWorld = ((CraftWorld) world).getHandle();
+            FasterZombie playerZombie = new FasterZombie(mcWorld);
+            playerZombie.setPosition(location.getX(), location.getY(), location.getZ());
+            mcWorld.addEntity(playerZombie, CreatureSpawnEvent.SpawnReason.CUSTOM);
 
-        Entity zombie = playerZombie.getBukkitEntity();
+            zombie = playerZombie.getBukkitEntity();
+        } else {
+            zombie = world.spawnEntity(location, EntityType.ZOMBIE);
+        }
 
         if (Settings.getConfig().getBoolean(SYSTEM + PLAYER_ZOMBIE + PZ_INV)) {
             ArrayList<MaskedItem> playerInv = new ArrayList<MaskedItem>();

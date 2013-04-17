@@ -1,5 +1,6 @@
 package com.themaskedcrusader.moddedmobs;
 
+import com.themaskedcrusader.bukkit.Library;
 import com.themaskedcrusader.bukkit.config.Settings;
 import com.themaskedcrusader.moddedmobs.commands.Commands;
 import com.themaskedcrusader.moddedmobs.giants.Giants;
@@ -8,26 +9,29 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import java.io.File;
+import java.util.logging.Level;
 
 public class Plugin extends JavaPlugin {
-    public File[] libs =  new File[] {
-            new File(getDataFolder(), "tmc-lib.jar"),
-    };
 
     public void onDisable() {
         this.getLogger().info("modded mobs shut down");
     }
 
     public void onEnable() {
-        LibLoader.loadLibraries(this);
-        loadDefaultSettings();
-        new Zombies(this);
-        new Giants(this);
-        getLogger().info("TMC Modded Mobs Loaded!");
+        try {
+            loadDefaultSettings();
+            new Zombies(this);
+            new Giants(this);
+            getLogger().info("TMC Modded Mobs Loaded!");
+        } catch (NoClassDefFoundError e) {
+            getLogger().log(Level.SEVERE,  "TMC-LIB Library Missing or cannot load: Disabling Plugin.");
+            getLogger().log(Level.SEVERE,  "See install instructions at http://dev.bukkit.org/server-mods/tmc-lib/");
+            getServer().getPluginManager().disablePlugin(this);
+        }
     }
 
     private void loadDefaultSettings() {
+        Library.checkForNewVersion(getServer().getConsoleSender());
         Settings.init(this);
     }
 
