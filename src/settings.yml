@@ -1,5 +1,10 @@
+check-for-updates: true # If true: plugin will check for updates in the required TMC-LIB.
+
 faster-zombies:
   enabled: true        # If true: Custom, faster zombies are enabled.
+  slow-when-damaged:
+    enabled: true      # If true: Faster zombies will get a slowness potion when hit
+    duration: 5        # number of seconds for slowness potion to last.
 
 zombies:
   custom-drops:
@@ -17,6 +22,9 @@ zombies:
   player-zombies:
     enabled: true      # If true: When a player dies, a zombie will be spawned where they died.
     inventory: true    # If true: Player zombie will carry the inventory of the player who died
+  baby-zombies:
+    enabled: false     # If true: A percentage of zombie spawned will be turned to baby zombies
+    chance: 5          # If enabled, this is the percent of zombies which will be turned to baby zombies.
 
 giants:
   enabled: true          # If true: Custom Giants are enabled

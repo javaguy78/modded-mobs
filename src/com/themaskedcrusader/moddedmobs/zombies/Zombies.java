@@ -10,8 +10,11 @@ import java.lang.reflect.Method;
 
 public class Zombies extends Common {
 
-    public static final String FASTER_ZOMBIES = "faster-zombies";
     public static final String SYSTEM         = "zombies";
+
+    public static final String FASTER_ZOMBIES = "faster-zombies";
+        public static final String SLOW_WHEN_HIT = ".slow-when-damaged";
+        public static final String DURATION      = ".duration";
 
     public static final String CUSTOM_DROPS       = ".custom-drops";
         public static final String COMMON_ITEMS   = ".common-items";
@@ -20,6 +23,9 @@ public class Zombies extends Common {
 
     public static final String PLAYER_ZOMBIE  = ".player-zombies";
         public static final String PZ_INV     = ".inventory";
+
+    public static final String BABY_ZOMBIES   = "baby-zombies";
+        public static final String CHANCE     = ".chance";
 
     protected Zombies() {}
 
@@ -43,6 +49,11 @@ public class Zombies extends Common {
             }
             plugin.getLogger().info("Registered new faster zombies!");
             new ZombieSpawns(plugin);
+
+            if (Settings.getConfig().getBoolean(FASTER_ZOMBIES + SLOW_WHEN_HIT + ENABLED)) {
+                new ZombieListener(plugin);
+            }
+
         }
 
         if (Settings.getConfig().getBoolean(SYSTEM + CUSTOM_DROPS + ENABLED)) {
@@ -52,5 +63,6 @@ public class Zombies extends Common {
         if (Settings.getConfig().getBoolean(SYSTEM + PLAYER_ZOMBIE + ENABLED)) {
             new ZombiePlayers(plugin);
         }
+
     }
 }
