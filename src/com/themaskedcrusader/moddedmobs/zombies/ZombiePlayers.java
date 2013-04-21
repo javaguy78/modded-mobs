@@ -73,6 +73,8 @@ public class ZombiePlayers extends Zombies implements Listener {
             ((LivingEntity) zombie).getEquipment().setBoots(player.getEquipment().getBoots());
 
         }
+
+        ((LivingEntity) zombie).setRemoveWhenFarAway(false);
     }
 
     @EventHandler

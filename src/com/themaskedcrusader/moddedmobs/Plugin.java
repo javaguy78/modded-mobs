@@ -5,6 +5,7 @@ import com.themaskedcrusader.bukkit.config.Settings;
 import com.themaskedcrusader.moddedmobs.commands.Commands;
 import com.themaskedcrusader.moddedmobs.giants.Giants;
 import com.themaskedcrusader.moddedmobs.zombies.Zombies;
+import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -34,6 +35,8 @@ public class Plugin extends JavaPlugin {
         Settings.init(this);
         if (Settings.getConfig().getBoolean("check-for-updates")) {
             Library.checkForNewVersion(getServer().getConsoleSender());
+        } else {
+            getServer().getConsoleSender().sendMessage(ChatColor.AQUA + "Update Check Disabled: See http://dev.bukkit.org/server-mods/tmc-lib/ for updates");
         }
     }
 

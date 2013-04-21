@@ -65,8 +65,10 @@ public class Commands {
 
             World world = locationToSpawn.getWorld();
             LivingEntity entity = (LivingEntity) world.spawnEntity(locationToSpawn, EntityType.valueOf(entityType.toUpperCase()));
-            CreatureSpawnEvent event = new CreatureSpawnEvent(entity, CreatureSpawnEvent.SpawnReason.SPAWNER_EGG);
-            plugin.getServer().getPluginManager().callEvent(event);
+            CreatureSpawnEvent event = new CreatureSpawnEvent(entity, CreatureSpawnEvent.SpawnReason.CUSTOM);
+            try {
+                plugin.getServer().getPluginManager().callEvent(event);
+            } catch (Exception ignored) {} // for some reason, this throws an NPE, but still works.
 
         } catch (Exception e) {
             sender.sendMessage(ChatColor.RED + "Syntax Error: Command Format:");

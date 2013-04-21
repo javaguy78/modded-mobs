@@ -13,15 +13,14 @@ import org.bukkit.potion.PotionEffectType;
 public class ZombieListener extends Zombies implements Listener {
 
     public ZombieListener(JavaPlugin plugin) {
-        super(plugin);
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }
 
     @EventHandler
     public void slowTheZombiesDown(EntityDamageEvent event) {
-        int duration = Settings.getConfig().getInt(FASTER_ZOMBIES + SLOW_WHEN_HIT + DURATION);
         if (event.getEntity().getType() == EntityType.ZOMBIE) {
-            PotionEffect slowness = new PotionEffect(PotionEffectType.SLOW, duration, 0);
+            int duration = Settings.getConfig().getInt(FASTER_ZOMBIES + SLOW_WHEN_HIT + DURATION) * 20;
+            PotionEffect slowness = new PotionEffect(PotionEffectType.SLOW, duration, 3);
             ((LivingEntity) event.getEntity()).addPotionEffect(slowness);
         }
     }
