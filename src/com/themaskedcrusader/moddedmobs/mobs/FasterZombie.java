@@ -1,7 +1,7 @@
 package com.themaskedcrusader.moddedmobs.mobs;
 
-import net.minecraft.server.v1_5_R2.*;
-import org.bukkit.craftbukkit.v1_5_R2.util.UnsafeList;
+import net.minecraft.server.v1_4_R1.*;
+import org.bukkit.craftbukkit.v1_4_R1.util.UnsafeList;
 
 import java.lang.reflect.Field;
 
@@ -11,7 +11,7 @@ public class FasterZombie extends EntityZombie {
     public FasterZombie(World world) {
         super(world);
         try {
-            Field gsa = net.minecraft.server.v1_5_R2.PathfinderGoalSelector.class.getDeclaredField("a");
+            Field gsa = net.minecraft.server.v1_4_R1.PathfinderGoalSelector.class.getDeclaredField("a");
             gsa.setAccessible(true);
             gsa.set(this.goalSelector, new UnsafeList());
             gsa.set(this.targetSelector, new UnsafeList());

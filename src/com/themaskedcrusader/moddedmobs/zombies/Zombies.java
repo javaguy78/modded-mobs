@@ -3,7 +3,7 @@ package com.themaskedcrusader.moddedmobs.zombies;
 import com.themaskedcrusader.bukkit.config.Settings;
 import com.themaskedcrusader.moddedmobs.Common;
 import com.themaskedcrusader.moddedmobs.mobs.FasterZombie;
-import net.minecraft.server.v1_5_R2.EntityTypes;
+import net.minecraft.server.v1_4_R1.EntityTypes;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.lang.reflect.Method;
