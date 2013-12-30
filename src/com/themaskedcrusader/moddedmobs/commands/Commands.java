@@ -5,7 +5,9 @@ import com.themaskedcrusader.moddedmobs.Plugin;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.World;
+import org.bukkit.block.CommandBlock;
 import org.bukkit.command.CommandSender;
+import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
@@ -25,16 +27,26 @@ public class Commands {
     }
 
     public void processCommand(CommandSender sender, String[] args) {
-        try {
-            if (args[0].equalsIgnoreCase("spawn"))         { spawnEntity(sender, args);   return; }
-            if (args[0].equalsIgnoreCase("butcher"))       { butcherMobs(sender, args);   return; }
-            if (args[0].equalsIgnoreCase("help"))          { commandHelp(sender);         return; }
+        if (isAllowed(sender)) {
+            try {
+                if (args[0].equalsIgnoreCase("spawn"))         { spawnEntity(sender, args);   return; }
+                if (args[0].equalsIgnoreCase("butcher"))       { butcherMobs(sender, args);   return; }
+                if (args[0].equalsIgnoreCase("help"))          { commandHelp(sender);         return; }
 
-        } catch (Exception ignored) {
-            plugin.getLogger().info(ignored.getMessage());
+            } catch (Exception ignored) {}
+
+            sender.sendMessage(ChatColor.RED + "Command not found... please try again");
+            commandHelp(sender);
+        } else {
+            sender.sendMessage(ChatColor.RED + "You do not have permissions to use this command");
         }
+    }
 
-        sender.sendMessage(ChatColor.RED + "Command not found... please try again");
+    private boolean isAllowed(CommandSender sender) {
+        return (sender.hasPermission("modded-mobs.admin") ||
+                        sender.isOp() ||
+                        sender instanceof ConsoleCommandSender ||
+                        sender instanceof CommandBlock);
     }
 
     private void spawnEntity(CommandSender sender, String[] args) {

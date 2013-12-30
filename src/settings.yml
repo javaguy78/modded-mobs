@@ -1,5 +1,3 @@
-check-for-updates: true # If true: plugin will check for updates in the required TMC-LIB.
-
 faster-zombies:
   enabled: true        # If true: Custom, faster zombies are enabled.
   slow-when-damaged:

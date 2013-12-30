@@ -1,6 +1,6 @@
 name: Modded Mobs
 main: com.themaskedcrusader.moddedmobs.Plugin
-version: Alpha 0.3
+version: Alpha 1.0
 
 commands:
     mobadmin:

@@ -3,14 +3,13 @@ package com.themaskedcrusader.moddedmobs.zombies;
 import com.themaskedcrusader.bukkit.Random;
 import com.themaskedcrusader.bukkit.config.Settings;
 import com.themaskedcrusader.moddedmobs.mobs.FasterZombie;
-import net.minecraft.server.v1_4_R1.EntityZombie;
+import net.minecraft.server.v1_5_R3.EntityZombie;
 import org.bukkit.Location;
 import org.bukkit.World;
-import org.bukkit.craftbukkit.v1_4_R1.CraftWorld;
-import org.bukkit.craftbukkit.v1_4_R1.entity.CraftEntity;
+import org.bukkit.craftbukkit.v1_5_R3.CraftWorld;
+import org.bukkit.craftbukkit.v1_5_R3.entity.CraftEntity;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
-import org.bukkit.entity.LivingEntity;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
@@ -35,8 +34,8 @@ public class ZombieSpawns extends Zombies implements Listener {
         Entity entity = event.getEntity();
         World world = location.getWorld();
 
-        net.minecraft.server.v1_4_R1.World mcWorld = ((CraftWorld) world).getHandle();
-        net.minecraft.server.v1_4_R1.Entity mcEntity = (((CraftEntity) entity).getHandle());
+        net.minecraft.server.v1_5_R3.World mcWorld = ((CraftWorld) world).getHandle();
+        net.minecraft.server.v1_5_R3.Entity mcEntity = (((CraftEntity) entity).getHandle());
 
         if (entity.getType() == EntityType.ZOMBIE && !(mcEntity instanceof FasterZombie)){
             FasterZombie fasterZombie = new FasterZombie(mcWorld);
@@ -51,6 +50,7 @@ public class ZombieSpawns extends Zombies implements Listener {
 
     @EventHandler(priority = EventPriority.HIGH)
     public void changeRegularZombieToBabyZombie(CreatureSpawnEvent event) {
+        if (event.isCancelled()) return;
         if (Settings.getConfig().getBoolean(SYSTEM + BABY_ZOMBIES + ENABLED)) {
             if (random.nextInt() < Settings.getConfig().getInt(SYSTEM + BABY_ZOMBIES + CHANCE) &&
                     event.getEntityType() == EntityType.ZOMBIE) {

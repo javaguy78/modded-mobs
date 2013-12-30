@@ -6,7 +6,7 @@ import com.themaskedcrusader.moddedmobs.mobs.FasterZombie;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
-import org.bukkit.craftbukkit.v1_4_R1.CraftWorld;
+import org.bukkit.craftbukkit.v1_5_R3.CraftWorld;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
@@ -40,7 +40,7 @@ public class ZombiePlayers extends Zombies implements Listener {
         Entity zombie;
 
         if (Settings.getConfig().getBoolean(FASTER_ZOMBIES + ENABLED)) {
-            net.minecraft.server.v1_4_R1.World mcWorld = ((CraftWorld) world).getHandle();
+            net.minecraft.server.v1_5_R3.World mcWorld = ((CraftWorld) world).getHandle();
             FasterZombie playerZombie = new FasterZombie(mcWorld);
             playerZombie.setPosition(location.getX(), location.getY(), location.getZ());
             mcWorld.addEntity(playerZombie, CreatureSpawnEvent.SpawnReason.CUSTOM);

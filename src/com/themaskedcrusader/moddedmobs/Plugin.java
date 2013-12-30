@@ -1,16 +1,12 @@
 package com.themaskedcrusader.moddedmobs;
 
-import com.themaskedcrusader.bukkit.Library;
 import com.themaskedcrusader.bukkit.config.Settings;
 import com.themaskedcrusader.moddedmobs.commands.Commands;
 import com.themaskedcrusader.moddedmobs.giants.Giants;
 import com.themaskedcrusader.moddedmobs.zombies.Zombies;
-import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.java.JavaPlugin;
-
-import java.util.logging.Level;
 
 public class Plugin extends JavaPlugin {
 
@@ -19,25 +15,14 @@ public class Plugin extends JavaPlugin {
     }
 
     public void onEnable() {
-        try {
             loadDefaultSettings();
             new Zombies(this);
             new Giants(this);
             getLogger().info("TMC Modded Mobs Loaded!");
-        } catch (NoClassDefFoundError e) {
-            getLogger().log(Level.SEVERE,  "TMC-LIB Library Missing or cannot load: Disabling Plugin.");
-            getLogger().log(Level.SEVERE,  "See install instructions at http://dev.bukkit.org/server-mods/tmc-lib/");
-            getServer().getPluginManager().disablePlugin(this);
-        }
     }
 
     private void loadDefaultSettings() {
         Settings.init(this);
-        if (Settings.getConfig().getBoolean("check-for-updates")) {
-            Library.checkForNewVersion(getServer().getConsoleSender());
-        } else {
-            getServer().getConsoleSender().sendMessage(ChatColor.AQUA + "Update Check Disabled: See http://dev.bukkit.org/server-mods/tmc-lib/ for updates");
-        }
     }
 
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
